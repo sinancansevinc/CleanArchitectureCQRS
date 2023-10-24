@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 
 namespace CleanArchitectureCQRS.Application
 {
@@ -7,7 +8,13 @@ namespace CleanArchitectureCQRS.Application
     {
         public static void ConfigureApplication(this IServiceCollection services,IConfiguration configuration)
         {
-            
+            var assembly = typeof(RegisterService).Assembly;
+            services.AddMediatR(configuration => configuration.RegisterServicesFromAssembly(assembly));
+
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
+            //services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+
         }
     }
 }

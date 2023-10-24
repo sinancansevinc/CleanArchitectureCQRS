@@ -10,7 +10,7 @@ namespace CleanArchitectureCQRS.Application.Context
 {
     public interface ICourtDbContext
     {
-        DbSet<Court> Courts { get; set; }
+        DbSet<CleanArchitectureCQRS.Domain.Entities.Court> Courts { get; set; }
         Task<int> SaveToDbAsync();
     }
 }

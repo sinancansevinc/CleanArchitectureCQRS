@@ -8,7 +8,7 @@ namespace CleanArchitectureCQRS.Infrastructure
 {
     public static class RegisterService
     {
-        public static void ConfigureInfrastructure(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection ConfigureInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<CourtDbContext>(options =>
 
@@ -18,6 +18,8 @@ namespace CleanArchitectureCQRS.Infrastructure
             {
                 return option.GetService<CourtDbContext>();
             });
+
+            return services;
         }
     }
 }
