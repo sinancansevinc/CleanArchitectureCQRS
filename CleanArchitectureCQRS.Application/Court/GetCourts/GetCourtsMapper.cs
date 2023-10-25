@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace CleanArchitectureCQRS.Application.Court.GetCourts
 {
-    public class CourtMapper : Profile
+    public class GetCourtsMapper : Profile
     {
-        public CourtMapper()
+        public GetCourtsMapper()
         {
             CreateMap<CleanArchitectureCQRS.Domain.Entities.Court, GetCourtsResponse>();
         }

@@ -13,7 +13,6 @@ namespace CleanArchitectureCQRS.Application
 
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
-            //services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
         }
     }

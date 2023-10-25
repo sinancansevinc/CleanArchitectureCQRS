@@ -1,4 +1,5 @@
 ﻿using CleanArchitectureCQRS.Application.Court.CreateCourt;
+using CleanArchitectureCQRS.Application.Court.GetCourt;
 using CleanArchitectureCQRS.Application.Court.GetCourts;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -31,6 +32,19 @@ namespace CleanArchitectureCQRS.Api.Controllers
             var response = await _mediator.Send(request);
 
             return Ok(response);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetCourt(int id)
+        {
+            var court = await _mediator.Send(new GetCourtRequest { Id = id });
+
+            if (court is null)
+            {
+                return NotFound();
+            }
+
+            return Ok(court);
         }
     }
 }
