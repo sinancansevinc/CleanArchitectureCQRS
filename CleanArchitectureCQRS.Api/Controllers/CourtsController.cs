@@ -1,6 +1,8 @@
 ﻿using CleanArchitectureCQRS.Application.Court.CreateCourt;
+using CleanArchitectureCQRS.Application.Court.DeleteCourt;
 using CleanArchitectureCQRS.Application.Court.GetCourt;
 using CleanArchitectureCQRS.Application.Court.GetCourts;
+using CleanArchitectureCQRS.Application.Court.UpdateCourt;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -46,5 +48,33 @@ namespace CleanArchitectureCQRS.Api.Controllers
 
             return Ok(court);
         }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdateCourt(int id, UpdateCourtRequest request)
+        {
+
+            if (id != request.Id)
+            {
+                return BadRequest();
+            }
+
+            var court = await _mediator.Send(request);
+
+            return Ok(court);
+
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> DeleteCourt(int id)
+        {
+            var response = await _mediator.Send(new DeleteCourtRequest { Id = id });
+
+            if (response.IsSuccess)
+                    return Ok();
+
+            return BadRequest();
+            
+        }
     }
 }
+
